@@ -1,7 +1,7 @@
 -- SwingTimerFader: shared helpers.
 local ADDON, ns = ...
 
--- Version from the .toc (stamped by the release workflow).
+-- Version from the .toc "## Version:" line.
 local getMetadata = (C_AddOns and C_AddOns.GetAddOnMetadata) or GetAddOnMetadata
 ns.VERSION = getMetadata and getMetadata(ADDON, "Version") or "unknown"
 

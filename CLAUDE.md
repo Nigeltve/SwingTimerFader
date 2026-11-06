@@ -8,7 +8,7 @@ SwingTimerFader: a WoW **Forever** addon (Interface `16001`, Lua 5.1) that fades
 - Chat output goes through `ns.logger` (`Say` for players, `LogDebug/Info/Warning/Error` for diagnostics). Never call `print` directly.
 - Allowed setting ranges live only in `ns.LIMITS`. Fade states live only in `ns.PHASE`.
 - Blizzard UI source is not on disk. Learn client APIs from other addons in `..\` (e.g. FadeAnything, ForeverAuras, HunggysRing). Read only; don't copy their code (FadeAnything is GPL).
-- Releases: GitHub Actions "Create Release" (`.github/workflows/release.yml`) stamps `## Version` into the `.toc` and zips the addon.
+- Releases: `.github/workflows/release.yml` publishes `vX.Y.Z` automatically when `## Version:` in the `.toc` is raised on `main`. The `.toc` version is the single source of truth.
 
 # Working rules
 - Make the smallest change that solves the problem, but don't sacrifice clarity for conciseness

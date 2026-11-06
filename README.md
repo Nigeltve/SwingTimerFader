@@ -56,7 +56,7 @@ Other addons that also fade the built-in swing timer (for example FadeAnything's
 
 ## Releasing (maintainers)
 
-Releases are built by GitHub Actions: **Actions → Create Release → Run workflow**, enter a version like `1.0.0`. The workflow stamps the version into the `.toc`, zips the addon and publishes a GitHub release with notes.
+Raise `## Version:` in `SwingTimerFader.toc` (format `X.Y.Z`) and push to `main`. GitHub Actions then zips the addon and publishes release `vX.Y.Z` with generated notes. Pushes where the version isn't higher than the latest release are skipped. You can also run **Actions → Create Release → Run workflow** to release the current `.toc` version if it hasn't been released yet.
 
 ## Author
 
