@@ -48,7 +48,7 @@ jobs:
           rsync -av \
             --exclude='.git' --exclude='.github' --exclude='.gitignore' \
             --exclude='.agents' --exclude='.claude' --exclude='skills-lock.json' \
-            --exclude='build' \
+            --exclude='CLAUDE.md' --exclude='build' \
             ./ "build/$ADDON/"
 
           # Stamp the release version into the packaged .toc
