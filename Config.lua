@@ -24,8 +24,11 @@ function ns.InitDB()
     end
 end
 
+-- Falls back to the default if saved variables aren't loaded yet.
 function ns.Get(key)
-    return STF_DB[key]
+    local value = STF_DB and STF_DB[key]
+    if value == nil then value = DEFAULTS[key] end
+    return value
 end
 
 function ns.IsEnabled()

@@ -43,6 +43,7 @@ end
 local function setActive(g, on)
     if g.active == on then return end
     g.active = on
+    ns.logger:LogDebug(("%s auto-attack %s"):format(g.key, on and "started" or "stopped"))
     ns.RefreshGroup(g, ns.IsEnabled())
 end
 
@@ -60,7 +61,10 @@ end
 function handlers.PLAYER_ENTERING_WORLD()
     readState()   -- correct state after /reload mid-attack
     ns.Refresh()
-    for _, g in ipairs(ns.groups) do ns.Apply(g) end -- (re)hook frames that now exist
+    ns.ResolveMissing() -- find and hook bars that didn't exist at load
+    for _, g in ipairs(ns.groups) do
+        if not g.complete then ns.logger:LogWarning("Swing bar not found yet. " .. ns.Describe(g)) end
+    end
 end
 
 -- Bars may be created when weapons change; pick them up.

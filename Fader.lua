@@ -2,7 +2,8 @@
 -- The idle countdown is a one-shot timer; OnUpdate runs only during the fade.
 local _, ns = ...
 
-local SetAlpha, Get, groups, PHASE = ns.SetAlpha, ns.Get, ns.groups, ns.PHASE
+local SetGroupAlpha, Get, groups, PHASE = ns.SetGroupAlpha, ns.Get, ns.groups, ns.PHASE
+local logger = ns.logger
 
 local driver = CreateFrame("Frame")
 driver:Hide()
@@ -23,8 +24,9 @@ end
 local function enterPhase(g, phase, alpha)
     cancelTimer(g)
     stopFade(g)
+    if g.phase ~= phase then logger:LogDebug(("%s: %s -> %s"):format(g.key, g.phase, phase)) end
     g.phase = phase
-    if alpha then SetAlpha(g, alpha) end
+    if alpha then SetGroupAlpha(g, alpha) end
 end
 
 local function startFade(g)
@@ -34,6 +36,7 @@ local function startFade(g)
         enterPhase(g, PHASE.HIDDEN, 0)
         return
     end
+    logger:LogDebug(("%s: %s -> %s"):format(g.key, g.phase, PHASE.FADING))
     g.phase, g.fadeStart, g.fadeFrom = PHASE.FADING, GetTime(), g.alpha
     fadingCount = fadingCount + 1
     driver:Show()
@@ -47,7 +50,7 @@ driver:SetScript("OnUpdate", function()
             if t >= 1 then
                 enterPhase(g, PHASE.HIDDEN, 0)
             else
-                SetAlpha(g, g.fadeFrom * (1 - t))
+                SetGroupAlpha(g, g.fadeFrom * (1 - t))
             end
         end
     end
@@ -95,7 +98,7 @@ end
 -- show it and keep it shown until a swing is missed.
 function ns.OnSwing(g, swingDuration)
     if g.active or g.phase == PHASE.OFF then return end
-    SetAlpha(g, 1)
+    SetGroupAlpha(g, 1)
     startWaiting(g, (swingDuration or 0) + 0.2) -- small slack for latency
 end
 

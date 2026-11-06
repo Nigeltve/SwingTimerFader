@@ -6,6 +6,7 @@ A World of Warcraft **Forever** addon that fades the game's built-in swing timer
 - **Ranged bar** is shown while Auto Shot, a wand (Shoot) or Throw is repeating.
 - Each group fades on its own: while you melee, the ranged bar stays faded, and vice versa.
 - Bars appear **instantly** when you start attacking and fade out **smoothly** after you stop.
+- As a backup, any swing also shows its bar. If the addon missed the start of an attack (for example after a `/reload` mid-fight), the bar stays up until a full swing passes without another swing, or the fade delay, whichever is longer.
 
 The addon only changes the bars' transparency. It doesn't move, resize or replace them, and Blizzard's own behaviour (such as the range dimming) is left alone.
 
@@ -34,11 +35,15 @@ Open **Settings → AddOns → SwingTimerFader**, or type `/stf`.
 
 | Command | What it does |
 |---|---|
-| `/stf` or `/stf config` | Open the options panel |
+| `/stf` | Show the addon version and open the options panel |
+| `/stf config` | Open the options panel |
+| `/stf help` | List the commands |
 | `/stf toggle` | Turn the addon on/off for this character |
 | `/stf delay <seconds>` | Set the fade delay |
 | `/stf fade <seconds>` | Set the fade-out time |
 | `/stf status` | Print the current state and whether each swing bar was found |
+
+Values outside the allowed range are capped to the nearest limit (for example `/stf delay 9` sets 5s).
 
 ## Compatibility
 
@@ -46,7 +51,7 @@ Other addons that also fade the built-in swing timer (for example FadeAnything's
 
 ## Troubleshooting
 
-- **Bars never fade:** run `/stf status`. Each bar should show `=ok`. If one shows `missing`, the game's frame name may have changed; please open an issue with the output.
+- **Bars never fade:** run `/stf status`. Each bar should show `=ok`. `missing` means the bar doesn't exist (yet), and the game's frame name may have changed. `unusable` means the bar exists but is restricted by the game, so it's left at its normal visibility. In either case please open an issue with the output.
 - **Lua errors:** enable them with `/console scriptErrors 1`, `/reload`, and include the error text in an issue.
 
 ## Releasing (maintainers)

@@ -70,7 +70,7 @@ function ns.Apply(group)
 end
 
 -- Also writes while frames are missing, so late-created ones get the right alpha.
-function ns.SetAlpha(group, a)
+function ns.SetGroupAlpha(group, a)
     if a ~= group.alpha or not group.complete then
         group.alpha = a
         ns.Apply(group)

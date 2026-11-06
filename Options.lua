@@ -52,7 +52,7 @@ end
 function ns.CreateOptions()
     if panel or not Settings or not Settings.RegisterCanvasLayoutCategory then return end
 
-    panel = CreateFrame("Frame", "SwingTimerFaderOptionsPanel", UIParent)
+    panel = CreateFrame("Frame", nil, UIParent)
     panel:Hide()
 
     local header = panel:CreateFontString(nil, "ARTWORK", "GameFontNormalLarge")
@@ -84,6 +84,6 @@ function ns.OpenOptions()
     if category and Settings.OpenToCategory then
         Settings.OpenToCategory(category:GetID())
     else
-        ns.Print("Options panel unavailable; use /stf delay <s> and /stf fade <s>.")
+        ns.logger:Say("Options panel unavailable; use /stf delay <s> and /stf fade <s>.")
     end
 end
