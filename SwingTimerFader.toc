@@ -1,0 +1,16 @@
+## Interface: 16001
+## Title: SwingTimerFader
+## Notes: Fades the built-in swing timer while you are not auto-attacking.
+## Version: 0.0.1
+## Author: NuggyNige
+## LoadSavedVariablesFirst: 1
+## SavedVariables: STF_DB
+## SavedVariablesPerCharacter: STF_DB_CHAR
+
+Util.lua
+Config.lua
+Frames.lua
+Fader.lua
+Events.lua
+Slash.lua
+Options.lua

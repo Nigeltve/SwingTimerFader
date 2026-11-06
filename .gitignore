@@ -1,0 +1,18 @@
+# AI agent tooling (installed skills, local settings) - not part of the addon
+.agents/
+.claude/
+skills-lock.json
+
+# Editor / IDE
+.vscode/
+.idea/
+*.code-workspace
+
+# OS junk
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# Packaged releases
+*.zip
+release/
