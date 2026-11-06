@@ -1,7 +1,8 @@
 ## Interface: 16001
 ## Title: SwingTimerFader
 ## Notes: Fades the built-in swing timer while you are not auto-attacking.
-## Version: 1.0.2
+## IconTexture: Interface\AddOns\SwingTimerFader\Media\icon
+## Version: 1.0.3
 ## Author: NuggyNige
 ## LoadSavedVariablesFirst: 1
 ## SavedVariables: STF_DB
